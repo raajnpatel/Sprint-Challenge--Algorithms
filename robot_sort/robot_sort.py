@@ -102,16 +102,8 @@ class SortingRobot:
             # Boolean false
             self.set_light_off()
 
-            # Move all the way to the left and pick up item
             self.swap_item()
-            # while True:
-            #     # This moves the robot all the way to the left until it can't anymore
-            #     if self.can_move_left():
-            #         self.move_left()
-            #     else:
-            #         # Once it is all the way to the left, pick up the item there
-            #         self.swap_item()
-            #         break
+
             while True:
                 if self.can_move_right():
 
@@ -121,17 +113,13 @@ class SortingRobot:
                     # if the item in the list is less than the item we're holding...
                     if self.compare_item() == 1:
                         # Use the light as our boolean (True). This let's us know we have swapped an item
+
                         self.set_light_on()
                         # Switch the items
                         self.swap_item()
-                        # self.move_left()
-                        # self.swap_item()
-                        # self.move_right()
-                        # if there's more room the to right, pick up the item and repeat the full process
                         if not self.can_move_right():
                             self.move_left()
                             self.swap_item()
-                        # else:
                             break
                         else:
 
@@ -140,10 +128,7 @@ class SortingRobot:
                             self.move_right()
                             self.swap_item()
                         # if there's more room the to right, pick up the item and repeat the full process
-                        # if self.can_move_right():
-                        #     self.swap_item()
-                        # else:
-                        #     break
+
                     else:
                         # If the item we're looking at is more than the item we're holding, put item we're holding
                         # back, then pick up item we're looking at (only if there's more room on the right)
@@ -159,7 +144,6 @@ class SortingRobot:
                 break
 
                 # Reverse bubble swap??
-
             else:
                 self.set_light_off()
                 self.swap_item()
@@ -167,26 +151,25 @@ class SortingRobot:
             while True:
                 if self.can_move_left():
 
-                    # move one to the left and compare what we're holding
                     self.move_left()
 
-                    # if the item in the list is less than the item we're holding...
                     if self.compare_item() == -1:
-                        # Use the light as our boolean (True). This let's us know we have swapped an item
                         self.set_light_on()
-                        # Switch the items
+
                         self.swap_item()
-                        self.move_right()
-                        self.swap_item()
-                        self.move_left()
-                        # if there's more room the to right, pick up the item and repeat the full process
-                        if self.can_move_left():
+
+                        if not self.can_move_left():
+                            self.move_right()
                             self.swap_item()
-                        else:
                             break
+                        else:
+
+                            self.move_right()
+                            self.swap_item()
+                            self.move_left()
+                            self.swap_item()
+
                     else:
-                        # If the item we're looking at is more than the item we're holding, put item we're holding
-                        # back, then pick up item we're looking at (only if there's more room on the right)
                         self.move_right()
                         self.swap_item()
                         self.move_left()
@@ -195,7 +178,6 @@ class SortingRobot:
                 else:
                     break
             if not self.light_is_on():
-                # If we have not swapped any items, the light will be off. Therefore the sort is complete
                 break
 
         """
